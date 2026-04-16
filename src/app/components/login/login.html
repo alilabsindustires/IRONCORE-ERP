@@ -1,0 +1,106 @@
+<div class="min-h-screen flex font-sans bg-bg-primary">
+  <!-- Left Column: Login Form -->
+  <div class="w-full lg:w-1/2 flex flex-col justify-center items-center p-8 bg-bg-secondary border-r border-border" dir="rtl">
+    <div class="w-full max-w-md space-y-8 animate-in fade-in slide-in-from-right-8 duration-700">
+      <!-- Logo -->
+      <div class="flex justify-center mb-8">
+        <div class="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center text-accent border border-accent/20 shadow-xl shadow-accent/10">
+          <mat-icon class="scale-150">fitness_center</mat-icon>
+        </div>
+      </div>
+
+      <!-- Header -->
+      <div class="text-center space-y-2">
+        <h1 class="text-3xl font-black text-text-main font-display tracking-tight uppercase">IronCore <span class="text-accent">ERP</span></h1>
+        <p class="text-text-dim text-sm font-medium">أدخل بياناتك للوصول إلى النظام</p>
+      </div>
+
+      <!-- Form -->
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="mt-8 space-y-6">
+        <div class="space-y-4">
+          <!-- Email -->
+          <div class="space-y-1">
+            <label for="email" class="text-[10px] font-black text-text-dim uppercase tracking-widest block">البريد الإلكتروني</label>
+            <div class="relative">
+              <input 
+                id="email"
+                formControlName="email"
+                type="email" 
+                placeholder="admin@company.com"
+                class="w-full px-4 py-3 bg-bg-primary border border-border rounded-xl focus:ring-2 focus:ring-accent/20 focus:border-accent transition-all outline-none pl-12 text-text-main placeholder:text-text-dim/30"
+              />
+              <mat-icon class="absolute left-4 top-1/2 -translate-y-1/2 text-text-dim/40">mail_outline</mat-icon>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="space-y-1">
+            <label for="password" class="text-[10px] font-black text-text-dim uppercase tracking-widest block">كلمة المرور</label>
+            <div class="relative">
+              <input 
+                id="password"
+                formControlName="password"
+                type="password" 
+                placeholder="••••••••"
+                class="w-full px-4 py-3 bg-bg-primary border border-border rounded-xl focus:ring-2 focus:ring-accent/20 focus:border-accent transition-all outline-none pl-12 text-text-main placeholder:text-text-dim/30"
+              />
+              <mat-icon class="absolute left-4 top-1/2 -translate-y-1/2 text-text-dim/40">lock_outline</mat-icon>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <label class="flex items-center space-x-2 space-x-reverse cursor-pointer group">
+            <input type="checkbox" formControlName="rememberMe" class="w-4 h-4 rounded bg-bg-primary border-border text-accent focus:ring-accent">
+            <span class="text-xs text-text-dim group-hover:text-text-main transition-colors">تذكرني</span>
+          </label>
+          <a href="#" class="text-xs font-bold text-accent hover:text-white transition-colors">نسيت كلمة المرور؟</a>
+        </div>
+
+        @if (error) {
+          <div class="p-3 bg-red/10 text-red rounded-lg text-xs text-center border border-red/20">
+            {{ error }}
+          </div>
+        }
+
+        <button 
+          type="submit"
+          [disabled]="loginForm.invalid"
+          class="w-full py-4 px-4 bg-accent hover:bg-accent/80 text-white font-black rounded-xl shadow-xl shadow-accent/20 transition-all active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none flex items-center justify-center space-x-2 space-x-reverse uppercase tracking-widest text-xs"
+        >
+          <span>دخول النظام</span>
+          <mat-icon class="text-sm">login</mat-icon>
+        </button>
+      </form>
+
+      <div class="pt-8 border-t border-border flex justify-between items-center opacity-40">
+        <span class="text-[10px] font-bold text-text-dim uppercase italic shadow-sm">Local DB Sync</span>
+        <span class="text-[10px] font-bold text-green uppercase tracking-tighter">Secure Terminal</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Column: Graphic -->
+  <div class="hidden lg:flex lg:w-1/2 bg-bg-primary relative items-center justify-center overflow-hidden">
+    <!-- Grid Pattern Overlay -->
+    <div class="absolute inset-0 z-0 opacity-10" style="background-image: radial-gradient(var(--color-border) 1px, transparent 0); background-size: 40px 40px;"></div>
+    
+    <div class="relative z-10 text-center animate-in fade-in zoom-in duration-1000">
+      <div class="mb-12 relative inline-block">
+        <div class="w-72 h-72 bg-bg-secondary/80 backdrop-blur-md rounded-3xl flex items-center justify-center shadow-2xl border border-border/50">
+          <mat-icon class="text-[140px] h-auto w-auto text-accent drop-shadow-2xl">security</mat-icon>
+        </div>
+        <div class="absolute -bottom-6 -right-6 bg-accent w-24 h-24 rounded-3xl flex items-center justify-center text-white shadow-2xl shadow-accent/40 rotate-12 border-4 border-bg-primary">
+          <mat-icon class="text-5xl">fitness_center</mat-icon>
+        </div>
+      </div>
+      
+      <h2 class="text-6xl font-black text-text-main tracking-tighter mb-4 font-display italic">IRONCORE <span class="text-accent underline decoration-4 underline-offset-8">ERP</span></h2>
+      <p class="text-xl text-text-dim font-medium uppercase tracking-[0.3em] opacity-60">Sass Platform • Offline Ready</p>
+    </div>
+
+    <!-- Background Glows -->
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/20 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+  </div>
+</div>

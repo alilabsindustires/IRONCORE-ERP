@@ -1,0 +1,6 @@
+{
+  "name": "Qubix ERP",
+  "description": "A comprehensive white-label gym management platform with membership tracking, QR attendance, and shift management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["Membership Management", "QR System", "Shift Tracking", "Financial Reports", "HR & Payroll"]
+}
