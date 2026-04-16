@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ApiService, Member } from '../../services/api';
+import { ApiService, Member, MembershipType } from '../../services/api';
 
 @Component({
   selector: 'app-members',
@@ -14,22 +14,33 @@ export class Members implements OnInit {
   private fb = inject(FormBuilder);
 
   members: Member[] = [];
+  plans: MembershipType[] = [];
   showAddModal = false;
 
   memberForm = this.fb.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     phone: ['', Validators.required],
-    membership_type_id: [1, Validators.required],
+    membership_type_id: [null as number | null, Validators.required],
     expiry_date: ['', Validators.required]
   });
 
   ngOnInit() {
     this.loadMembers();
+    this.loadPlans();
   }
 
   loadMembers() {
     this.api.getMembers().subscribe(res => this.members = res);
+  }
+
+  loadPlans() {
+    this.api.getMembershipTypes().subscribe(res => {
+      this.plans = res;
+      if (res.length > 0 && !this.memberForm.value.membership_type_id) {
+        this.memberForm.patchValue({ membership_type_id: res[0].id });
+      }
+    });
   }
 
   onSubmit() {

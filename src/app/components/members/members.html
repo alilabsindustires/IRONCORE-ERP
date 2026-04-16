@@ -83,8 +83,9 @@
             <div class="space-y-2">
               <label for="m-plan" class="text-[10px] font-black text-text-dim uppercase tracking-widest">Plan Selection</label>
               <select id="m-plan" formControlName="membership_type_id" class="w-full px-4 py-3 bg-bg-primary border border-border rounded-xl text-text-main outline-none focus:ring-2 focus:ring-accent/20 focus:border-accent transition-all">
-                <option value="1">Plan A - 30 Days</option>
-                <option value="2">Plan B - 90 Days</option>
+                @for (plan of plans; track plan.id) {
+                  <option [value]="plan.id">{{ plan.name }} - {{ plan.duration_days }} Days</option>
+                }
               </select>
             </div>
           </div>

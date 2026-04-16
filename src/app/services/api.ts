@@ -28,6 +28,15 @@ export interface Member {
   membership_name?: string;
 }
 
+export interface MembershipType {
+  id?: number;
+  name: string;
+  price: number;
+  duration_days: number;
+  freeze_days_allowed: number;
+  benefits?: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class ApiService {
   private http = inject(HttpClient);
@@ -57,5 +66,21 @@ export class ApiService {
 
   createMember(member: Partial<Member>) {
     return this.http.post<Member>('/api/members', member, { headers: this.headers });
+  }
+
+  getMembershipTypes() {
+    return this.http.get<MembershipType[]>('/api/membership-types', { headers: this.headers });
+  }
+
+  createMembershipType(type: MembershipType) {
+    return this.http.post<MembershipType>('/api/membership-types', type, { headers: this.headers });
+  }
+
+  updateMembershipType(id: number, type: MembershipType) {
+    return this.http.put<MembershipType>(`/api/membership-types/${id}`, type, { headers: this.headers });
+  }
+
+  deleteMembershipType(id: number) {
+    return this.http.delete(`/api/membership-types/${id}`, { headers: this.headers });
   }
 }

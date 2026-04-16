@@ -15,6 +15,7 @@ export class Layout {
   navItems = [
     { path: '/dashboard', label: 'Dashboard', icon: 'dashboard', arabic: 'لوحة التحكم' },
     { path: '/members', label: 'Members', icon: 'people', arabic: 'الأعضاء' },
+    { path: '/memberships', label: 'Memberships', icon: 'card_membership', arabic: 'العضويات' },
     { path: '/finance', label: 'Finance', icon: 'payments', arabic: 'المالية' },
     { path: '/hr', label: 'HR & Payroll', icon: 'badge', arabic: 'الموارد البشرية' },
     { path: '/settings', label: 'Settings', icon: 'settings', arabic: 'الإعدادات' },
